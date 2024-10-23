@@ -89,3 +89,17 @@ spec:
         - name: postgres-vol
           persistentVolumeClaim:
             claimName: postgres-volume-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: postgres
+  name: postgres
+  labels:
+    app: postgres
+spec:
+  type: NodePort
+  ports:
+    - port: 5432
+  selector:
+    app: postgres
